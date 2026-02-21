@@ -7,7 +7,7 @@ import { getSupabaseBrowserClient } from '@/lib/supabase/client';
 import type { Profile } from '@/types';
 
 export function useAuth() {
-  const { profile, isLoading, setProfile, setLoading, reset } = useAuthStore();
+  const { profile, isLoading, setProfile, reset } = useAuthStore();
 
   useEffect(() => {
     const supabase = getSupabaseBrowserClient();

@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Bell, Menu } from 'lucide-react';
+import { Bell } from 'lucide-react';
 import { Avatar } from '@/components/ui/Avatar';
 import { cn } from '@/lib/utils/cn';
 
@@ -15,7 +15,7 @@ interface TopAppBarProps {
 }
 
 export function TopAppBar({
-  onMenuClick,
+  onMenuClick: _onMenuClick,
   userAvatar,
   userName,
   notificationCount = 0,

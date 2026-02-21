@@ -1,8 +1,6 @@
-import { Suspense } from 'react';
 import { PageLayout } from '@/components/layout/PageLayout';
 import { Container } from '@/components/layout/Container';
 import { ArticleCard } from '@/components/content/ArticleCard';
-import { SkeletonCard } from '@/components/ui/Skeleton';
 import { EmptyState } from '@/components/feedback/EmptyState';
 import { Breadcrumb } from '@/components/navigation/Breadcrumb';
 import { getPosts } from '@/lib/queries/getPosts';

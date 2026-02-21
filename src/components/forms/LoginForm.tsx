@@ -1,6 +1,6 @@
 'use client';
 
-import { useActionState } from 'react';
+import { useFormState, useFormStatus } from 'react-dom';
 import { Input } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
 import { Alert } from '@/components/feedback/Alert';
@@ -8,8 +8,17 @@ import { signInWithEmail, type AuthActionResult } from '@/lib/actions/auth';
 
 const initialState: AuthActionResult = { success: false };
 
+function SubmitButton() {
+  const { pending } = useFormStatus();
+  return (
+    <Button type="submit" fullWidth isLoading={pending} className="mt-2">
+      Entrar
+    </Button>
+  );
+}
+
 export function LoginForm() {
-  const [state, action, isPending] = useActionState(signInWithEmail, initialState);
+  const [state, action] = useFormState(signInWithEmail, initialState);
 
   return (
     <form action={action} noValidate className="space-y-4">
@@ -35,9 +44,7 @@ export function LoginForm() {
         error={state?.fieldErrors?.password}
       />
 
-      <Button type="submit" fullWidth isLoading={isPending} className="mt-2">
-        Entrar
-      </Button>
+      <SubmitButton />
     </form>
   );
 }

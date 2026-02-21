@@ -2,7 +2,7 @@ import { createServerClient } from '@supabase/ssr';
 import { NextResponse, type NextRequest } from 'next/server';
 
 // Rotas que requerem autenticação (role: member+)
-const PROTECTED_ROUTES = ['/membros'];
+const PROTECTED_ROUTES = ['/membros', '/admin'];
 
 // Rotas que devem redirecionar usuários já logados
 const AUTH_ROUTES = ['/login', '/cadastro', '/esqueci-senha'];

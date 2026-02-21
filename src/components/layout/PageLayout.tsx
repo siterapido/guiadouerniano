@@ -24,7 +24,9 @@ export function PageLayout({
         {children}
       </main>
       {showFooter && <Footer />}
-      <BottomNavBar />
+      <div className="md:hidden">
+        <BottomNavBar />
+      </div>
     </div>
   );
 }

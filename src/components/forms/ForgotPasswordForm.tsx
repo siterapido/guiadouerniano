@@ -1,6 +1,6 @@
 'use client';
 
-import { useActionState } from 'react';
+import { useFormState, useFormStatus } from 'react-dom';
 import { Input } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
 import { Alert } from '@/components/feedback/Alert';
@@ -8,8 +8,17 @@ import { resetPassword, type AuthActionResult } from '@/lib/actions/auth';
 
 const initialState: AuthActionResult = { success: false };
 
+function SubmitButton() {
+  const { pending } = useFormStatus();
+  return (
+    <Button type="submit" fullWidth isLoading={pending} className="mt-2">
+      Enviar link de recuperação
+    </Button>
+  );
+}
+
 export function ForgotPasswordForm() {
-  const [state, action, isPending] = useActionState(resetPassword, initialState);
+  const [state, action] = useFormState(resetPassword, initialState);
 
   if (state?.success) {
     return (
@@ -33,9 +42,7 @@ export function ForgotPasswordForm() {
         error={state?.fieldErrors?.email}
       />
 
-      <Button type="submit" fullWidth isLoading={isPending} className="mt-2">
-        Enviar link de recuperação
-      </Button>
+      <SubmitButton />
     </form>
   );
 }

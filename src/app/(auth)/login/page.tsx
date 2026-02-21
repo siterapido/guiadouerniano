@@ -2,7 +2,6 @@ import Link from 'next/link';
 import { Divider } from '@/components/ui/Divider';
 import { LoginForm } from '@/components/forms/LoginForm';
 import { RegisterForm } from '@/components/forms/RegisterForm';
-import { Button } from '@/components/ui/Button';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {

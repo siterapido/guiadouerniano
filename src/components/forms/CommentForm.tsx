@@ -20,7 +20,7 @@ interface CommentFormProps {
   placeholder?: string;
 }
 
-export function CommentForm({ postId, parentId, onSubmit, onCancel, placeholder }: CommentFormProps) {
+export function CommentForm({ postId: _postId, parentId, onSubmit, onCancel, placeholder }: CommentFormProps) {
   const {
     register,
     handleSubmit,

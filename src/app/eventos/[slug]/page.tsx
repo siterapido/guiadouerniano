@@ -6,7 +6,7 @@ import { Breadcrumb } from '@/components/navigation/Breadcrumb';
 import { Badge } from '@/components/ui/Badge';
 import { Avatar } from '@/components/ui/Avatar';
 import { getEventBySlug } from '@/lib/queries/getEvents';
-import { formatDateTime, formatDate } from '@/lib/utils/format';
+import { formatDateTime } from '@/lib/utils/format';
 import { Calendar, MapPin, Users, ExternalLink } from 'lucide-react';
 import type { Metadata } from 'next';
 

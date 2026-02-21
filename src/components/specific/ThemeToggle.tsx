@@ -1,6 +1,6 @@
 'use client';
 
-import { Sun, Moon } from 'lucide-react';
+import { Sun } from 'lucide-react';
 import { cn } from '@/lib/utils/cn';
 
 // Placeholder — full theme implementation would use next-themes or similar

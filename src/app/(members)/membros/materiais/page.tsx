@@ -6,7 +6,7 @@ import { EmptyState } from '@/components/feedback/EmptyState';
 import { Badge } from '@/components/ui/Badge';
 import { getUser } from '@/lib/supabase/server';
 import { createSupabaseServerClient } from '@/lib/supabase/server';
-import { formatDate, formatFileSize } from '@/lib/utils/format';
+import { formatFileSize } from '@/lib/utils/format';
 import { FileText, Download } from 'lucide-react';
 import type { Metadata } from 'next';
 import type { Material } from '@/types';

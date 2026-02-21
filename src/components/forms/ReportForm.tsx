@@ -1,6 +1,6 @@
 'use client';
 
-import { useActionState } from 'react';
+import { useFormState, useFormStatus } from 'react-dom';
 import { Button } from '@/components/ui/Button';
 import { Textarea } from '@/components/ui/Textarea';
 import { Alert } from '@/components/feedback/Alert';
@@ -21,8 +21,17 @@ const REASON_OPTIONS = [
 
 const initialState: ReportActionResult = { success: false };
 
-export function ReportForm({ postId, onSuccess }: ReportFormProps) {
-  const [state, action, isPending] = useActionState(
+function SubmitButton() {
+  const { pending } = useFormStatus();
+  return (
+    <Button type="submit" isLoading={pending} fullWidth>
+      Enviar denúncia
+    </Button>
+  );
+}
+
+export function ReportForm({ postId, onSuccess: _onSuccess }: ReportFormProps) {
+  const [state, action] = useFormState(
     (prev: ReportActionResult, formData: FormData) => createReport(prev, formData, postId),
     initialState
   );
@@ -56,9 +65,7 @@ export function ReportForm({ postId, onSuccess }: ReportFormProps) {
         error={state.fieldErrors?.description}
       />
 
-      <Button type="submit" isLoading={isPending} fullWidth>
-        Enviar denúncia
-      </Button>
+      <SubmitButton />
     </form>
   );
 }

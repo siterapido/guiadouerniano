@@ -16,6 +16,71 @@ interface ArticleCardProps {
 export function ArticleCard({ post, variant = 'default', className }: ArticleCardProps) {
   const href = `/blog/${post.slug}`;
 
+  if (variant === 'featured') {
+    return (
+      <article
+        className={cn(
+          'group bg-white rounded-xl overflow-hidden border border-neutro-200 shadow-sm hover:shadow-card-hover transition-all duration-200 hover:-translate-y-1 h-full flex flex-col',
+          className
+        )}
+      >
+        <Link href={href} className="block min-h-[220px] md:min-h-[300px] overflow-hidden bg-neutro-100 relative">
+          {post.cover_image_url ? (
+            <Image
+              src={post.cover_image_url}
+              alt={post.title}
+              fill
+              className="object-cover group-hover:scale-105 transition-transform duration-300"
+              sizes="(max-width: 768px) 100vw, 66vw"
+            />
+          ) : (
+            <div className="w-full h-full bg-gradient-to-br from-azul-claro to-azul-uern/10" />
+          )}
+        </Link>
+
+        <div className="p-4 flex flex-col flex-1">
+          <div className="flex items-center justify-between mb-2">
+            <Badge variant="primary" className="text-[10px]">
+              {post.category.name}
+            </Badge>
+            {post.reading_time && (
+              <div className="flex items-center gap-1 text-xs text-neutro-600">
+                <Clock className="w-3 h-3" />
+                <span>{formatReadingTime(post.reading_time)}</span>
+              </div>
+            )}
+          </div>
+
+          <Link href={href} className="no-underline">
+            <h2 className="font-display font-extrabold text-neutro-900 text-2xl leading-snug line-clamp-2 group-hover:text-azul-correnteza transition-colors mb-2">
+              {post.title}
+            </h2>
+          </Link>
+
+          {post.excerpt && (
+            <p className="text-body-sm text-neutro-600 line-clamp-3 mb-3 flex-1">{post.excerpt}</p>
+          )}
+
+          <div className="flex items-center gap-2 pt-3 border-t border-neutro-200 mt-auto">
+            <Avatar src={post.author.avatar_url} name={post.author.name} size="xs" />
+            <div className="flex-1 min-w-0">
+              <p className="text-xs font-medium text-neutro-900 truncate">{post.author.name}</p>
+              <p className="text-xs text-neutro-600">
+                {post.published_at ? formatRelative(post.published_at) : 'Rascunho'}
+              </p>
+            </div>
+            {post.views_count > 0 && (
+              <div className="flex items-center gap-1 text-xs text-neutro-600">
+                <Eye className="w-3 h-3" />
+                <span>{post.views_count}</span>
+              </div>
+            )}
+          </div>
+        </div>
+      </article>
+    );
+  }
+
   if (variant === 'horizontal') {
     return (
       <article className={cn('flex gap-4 p-4 rounded-xl hover:bg-neutro-100 transition-colors', className)}>

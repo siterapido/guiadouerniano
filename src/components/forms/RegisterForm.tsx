@@ -1,6 +1,6 @@
 'use client';
 
-import { useActionState } from 'react';
+import { useFormState, useFormStatus } from 'react-dom';
 import { Input } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
 import { Alert } from '@/components/feedback/Alert';
@@ -8,8 +8,17 @@ import { signUpWithEmail, type AuthActionResult } from '@/lib/actions/auth';
 
 const initialState: AuthActionResult = { success: false };
 
+function SubmitButton() {
+  const { pending } = useFormStatus();
+  return (
+    <Button type="submit" fullWidth isLoading={pending} className="mt-2">
+      Criar conta
+    </Button>
+  );
+}
+
 export function RegisterForm() {
-  const [state, action, isPending] = useActionState(signUpWithEmail, initialState);
+  const [state, action] = useFormState(signUpWithEmail, initialState);
 
   if (state?.success) {
     return (
@@ -53,9 +62,7 @@ export function RegisterForm() {
         error={state?.fieldErrors?.password}
       />
 
-      <Button type="submit" fullWidth isLoading={isPending} className="mt-2">
-        Criar conta
-      </Button>
+      <SubmitButton />
     </form>
   );
 }
